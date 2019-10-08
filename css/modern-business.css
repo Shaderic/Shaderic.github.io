@@ -7,11 +7,24 @@ body {
   padding-top: 56px;
 }
 
+ul li li
+{
+  list-style: disc;
+}
+
 .highlight-item
 {
   color: #007BFF;
   font-weight: bolder;
 }
+
+.highlight-title
+{
+  color: #007BFF;
+  text-decoration: underline;
+}
+
+
 
 .carousel-item {
   height: 65vh;
