@@ -7,6 +7,12 @@ body {
   padding-top: 56px;
 }
 
+.highlight-item
+{
+  color: #007BFF;
+  font-weight: bolder;
+}
+
 .carousel-item {
   height: 65vh;
   min-height: 300px;
