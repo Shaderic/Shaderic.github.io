@@ -7,24 +7,29 @@ body {
   padding-top: 56px;
 }
 
-ul li li
-{
-  list-style: disc;
-}
-
 .highlight-item
 {
-  color: #007BFF;
+  //color: #007BFF;
   font-weight: bolder;
 }
 
-.highlight-title
+.smallUnderlineHeader
 {
-  color: #007BFF;
+  color: #004ac0;
+  font-weight: bolder;
   text-decoration: underline;
 }
 
+.underTitle
+{
+  font-size: smaller;
+  font-style: italic;
+}
 
+.general-list ul li
+{
+  list-style: disc;
+}
 
 .carousel-item {
   height: 65vh;
