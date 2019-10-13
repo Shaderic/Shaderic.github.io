@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Fur Rendering</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/modern-business.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">Cédric Van Huffelen</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="portfolio-1-col.html">Portfolio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="resume.html">Resume</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Page Content -->
+<div class="container">
+
+    <!-- Page Heading/Breadcrumbs -->
+    <h1 class="mt-4 mb-3">Fur rendering using fins and shells
+    </h1>
+
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="index.html">Home</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a href="portfolio-1-col.html">Portfolio</a>
+        </li>
+        <li class="breadcrumb-item active">Fur rendering using fins and shells</li>
+    </ol>
+
+    <p>
+        Fur is typically rendered using 2 approaches. Rendering all the individual hairs as geometry, or by volume
+        rendering.
+        With this method you render with multiple passes which rely heavily on geometry shaders; The first pass renders
+        the base mesh, then you render the fins.
+        Those are quads extruded from the silhouettes of the mesh and rendered with alpha blending.
+        The last pass renders each shell one by one from the inside out. Shells are the mesh extruded by the normal with
+        a proportional index.
+    </p>
+
+    <h3>The first pass - the base object</h3>
+    <p>
+        The first pass is a very simple draw of the model itself using a normal vertex and fragment shader.
+        While we calculate the lighting in the fragment shader the normal way (simple lambert diffuse lighting), we
+        darken the result a little bit to fake the hairs casting shadows on the model itself as it would in real
+        life
+    </p>
+
+    <h3>The second pass - the fins</h3>
+    <p>
+        The fins are rendered to preserve the illusion of fur along the silhouette edges. The fins are generated in the
+        <b>geometry shader</b>. In this pass, quads will be generated perpendicular to the surface of the base object.
+        Instead of using a vertex shader like in the previous pass, we immediately send the input to the geometry
+        shader.
+    </p>
+    <p>
+        For the input of our geometry shader we choose <b>line</b> as our <b>Primitive Type</b>. Each line consist out
+        of 2 points (vertices), which gives us enough information to generate the quad. Since we have our edge, we have
+        to determine if it lays on the silhouette and has to be extruded or not. If the dot product of the <b>edge
+        normal</b> and the <b>eye vector</b> is close to <b>0</b>, then the edge lays on the silhouette.
+        This <b>edge normal</b> can be calculated by simply averaging the 2 normals of the vertices. After we have found
+        our edge we still need to generate the quad. Because we already have 2 of the 4 points we only have to calculate
+        the last 2 by pushing each point outwards in the direction of its normal vector.
+    <div class="alert alert-danger" role="alert">
+        It is important that you push the points using their own vertex normal. if you would use the edge vector then
+        you can get broken silhouettes on edges that are supposed to be smooth!
+    </div>
+    </p>
+
+    <h3>The third pass - the shells</h3>
+    <p>
+        The last step in rendering our fur is the shells. These shells are rendered from the inside out by generating
+        the mesh <b>n</b> times. Every time the mesh is generated, we extrude it along its normal by an amount
+        proportional to
+        the index of the shell. Because of this, we make use of a second geometry shader but instead of using quads, we
+        use triangles.
+    </p>
+    <p>
+        To generate the mesh multiple times we use a for loop to iterate <b>n</b> amount of times. Each iteration, we
+        use the
+        input vertices as a base and then offset them using the current later index. This makes that every time we
+        generate a new layer, it is extruded a little bit further than the previous layer. to calculate this offset we
+        take the length of the fur and divide it by the number of layers we want to generate.
+    </p>
+
+    <p>
+        In the pixel shader, we use the same lighting calculation as in the first 2 passes. However, instead of getting
+        the ambient scene color in the vertex shader, we have to call it in the pixel shader. This is because we won't
+        be able to save it in the output of the geometry shader. In DirectX11 we can only save a maximum of 1024 scalar
+        components shared over all the generated vertices. To calculate how many scalar components we use in our
+        geometry shader, we take the maximum vertex count and multiply them with each scalar component in our output
+        struct.
+    <div class="alert alert-warning" role="alert">
+        Remember that a float2 counts as 2 scalars, a float3 as 3 and so on.
+    </div>
+    In this case, our maximum vertex count is 90 (30 triangles * 3 vertices) and we have 10 scalar components in the
+    output struct. (1 float4, 1 float3, 1 float2 and 1 int => 4 + 3 + 2 + 1 = 10). In total, this gives 900 scalar
+    components. if we would save the ambient value ( another float3) in the struct then we would reach 11770 scalars and
+    surpass the 1024 limit.
+    </p>
+
+    <!-- Portfolio Section -->
+    <div class="row">
+        <div class="col-lg-6 col-sm-6">
+            <div class="card">
+                <a href="Images/Projects/FurRendering/BearFur_Demo700x400.png"><img class="card-img-top"
+                                                                                    src="Images/Projects/FurRendering/BearFur_Demo700x400.png"
+                                                                                    alt=""></a>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-sm-6">
+            <div class="card">
+                <a href="Images/Projects/FurRendering/PantherFur_Demo700x400.png"><img class="card-img-top"
+                                                                                       src="Images/Projects/FurRendering/PantherFur_Demo700x400.png"
+                                                                                       alt=""></a>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-sm-6">
+            <div class="card">
+                <a href="Images/Projects/FurRendering/SnowFur_Demo700x400.png"><img class="card-img-top"
+                                                                                    src="Images/Projects/FurRendering/SnowFur_Demo700x400.png"
+                                                                                    alt=""></a>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-sm-6">
+            <div class="card">
+                <a href="Images/Projects/FurRendering/TigerFur_Demo700x400.png"><img class="card-img-top"
+                                                                                     src="Images/Projects/FurRendering/TigerFur_Demo700x400.png"
+                                                                                     alt=""></a>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+
+
+    <p>
+    <h3>References</h3>
+    <a href="http://developer.download.nvidia.com/SDK/10.5/direct3d/Source/Fur/doc/FurShellsAndFins.pdf" target="_blank">
+        White Paper - Fur (using Shells and Fins)
+    </a>
+    </p>
+
+
+</div>
+<!-- /.container -->
+
+<!-- Footer -->
+<footer class="py-5 bg-dark">
+    <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+    </div>
+    <!-- /.container -->
+</footer>
+
+<!-- Bootstrap core JavaScript -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

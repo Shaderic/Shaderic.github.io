@@ -15,11 +15,6 @@
 
     <!-- Custom styles for this template -->
     <link href="css/modern-business.css" rel="stylesheet">
-
-    <link rel="stylesheet" href="styles/default.css">
-    <script src="js/highlight.pack.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
-
 </head>
 
 <body>
@@ -28,7 +23,9 @@
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
         <a class="navbar-brand" href="index.html">Cédric Van Huffelen</a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+                aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -82,21 +79,19 @@
     <!-- Project One -->
     <div class="row">
         <div class="col-md-7">
-            <a href="#">
-                <img class="img-fluid rounded mb-3 mb-md-0" src="http://placehold.it/700x300" alt="">
+            <a href="FurRendering.html">
+                <img class="img-fluid rounded mb-3 mb-md-0" src="Images/Projects/FurRendering/FurRendering_700x300.png"
+                     alt="">
             </a>
         </div>
         <div class="col-md-5">
-            <h3>Object placement using poisson-disc sampling</h3>
+            <h3>Fur rendering using fins and shells</h3>
             <p>
-                While writing a tool to place objects inside a scene,
-                <br>I looked into different ways to
-                keep objects from overlapping.
-                This is where I found <b>Poisson-Disc sampling</b>, this generates a list of points where each point
-                is placed at a certain distance apart from every other one.
-                <br>Resulting in a naturally looking distribution of points.
+                Fur is typically rendered using 2 approaches. Rendering all the individual hairs as geometry, or by
+                volume rendering. <br>With this method you render with multiple passes which relies heavily on geometry
+                shaders.
             </p>
-            <a class="btn btn-primary" href="#">View Project
+            <a class="btn btn-primary" href="FurRendering.html">View Project
                 <span class="glyphicon glyphicon-chevron-right"></span>
             </a>
         </div>
@@ -104,7 +99,6 @@
     <!-- /.row -->
 
     <hr>
-
 
 
     <!-- Pagination -->
