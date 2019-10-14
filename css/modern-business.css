@@ -7,6 +7,27 @@ body {
   padding-top: 56px;
 }
 
+.codeBlock-header
+{
+  background-color: #f6f8fa;
+  border-radius: 5px;
+  border: 1px solid #d1d5da;
+  height: 25px;
+  margin-bottom: -13px;
+  text-align: center;
+  padding-top: 3px;
+  font-size: 13px;
+}
+.codeBlock
+{
+  border-radius: 5px;
+  border: 1px solid #d1d5da
+}
+
+.portfolio-slideshow
+{
+  border-radius: 10px;
+}
 .highlight-item
 {
   //color: #007BFF;

@@ -16,6 +16,11 @@
     <!-- Custom styles for this template -->
     <link href="css/modern-business.css" rel="stylesheet">
 
+    <!-- code highlighting -->
+    <link rel="stylesheet" href="styles/github-gist.css">
+    <script src="js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
 </head>
 
 <body>
@@ -71,13 +76,123 @@
         a proportional index.
     </p>
 
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+        </ol>
+        <div class="carousel-inner portfolio-slideshow" role="listbox">
+            <!-- Slide One - Set the background image for this slide in the line below -->
+            <div class="carousel-item active"
+                 style="background-image: url('Images/Projects/FurRendering/SnowFur_Demo700x400.png')">
+                <div class="carousel-caption d-none d-md-block">
+                    <h3>First Slide</h3>
+                    <p>This is a description for the first slide.</p>
+                </div>
+            </div>
+            <!-- Slide Two - Set the background image for this slide in the line below -->
+            <div class="carousel-item"
+                 style="background-image: url('Images/Projects/FurRendering/PantherFur_Demo700x400.png')">
+                <div class="carousel-caption d-none d-md-block">
+                    <h3>Second Slide</h3>
+                    <p>This is a description for the second slide.</p>
+                </div>
+            </div>
+            <!-- Slide Three - Set the background image for this slide in the line below -->
+            <div class="carousel-item"
+                 style="background-image: url('Images/Projects/FurRendering/TigerFur_Demo700x400.png')">
+                <div class="carousel-caption d-none d-md-block">
+                    <h3>Third Slide</h3>
+                    <p>This is a description for the third slide.</p>
+                </div>
+            </div>
+            <!-- Slide Three - Set the background image for this slide in the line below -->
+            <div class="carousel-item"
+                 style="background-image: url('Images/Projects/FurRendering/BearFur_Demo700x400.png')">
+                <div class="carousel-caption d-none d-md-block">
+                    <h3>Fourth Slide</h3>
+                    <p>This is a description for the thirfourthd slide.</p>
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+
+    <hr>
+
     <h3>The first pass - the base object</h3>
     <p>
         The first pass is a very simple draw of the model itself using a normal vertex and fragment shader.
         While we calculate the lighting in the fragment shader the normal way (simple lambert diffuse lighting), we
         darken the result a little bit to fake the hairs casting shadows on the model itself as it would in real
         life
+
+    <div>
+        <section>
+            <pre>
+                <code class="cpp codeBlock">
+// Vertex shader input
+struct VS_Input {
+   float4 vertex : POSITION;
+   float3 normal : NORMAL;
+   float2 uv     : TEXCOORD0;
+};
+
+// Vertex shader output | Fragment shader input
+struct VS_Output {
+   float4 position : SV_POSITION;
+   float3 wNormal  : NORMAL; // Normal vector in World Space
+   float2 uv       : TEXCOORD0;
+   float3 ambient  : TEXCOORD1; // Used to save scene ambient lighting
+};
+
+VS_Output vert(VS_Input i)
+{
+   VS_Output o;
+   o.position = UnityObjectToClipPos(i.vertex);
+
+   // Calculate world normal
+   o.wNormal = UnityObjectToWorldNormal(i.normal);
+
+   // Transform the UV's so it works with the texture scale and offset
+   o.uv = TRANSFORM_TEX(input.uv, _MainTex);
+
+   // Calculate ambient scene lighting
+   o.ambient = ShadeSH9(half4(o.wNormal, 1));
+}
+
+half4 fragment(VS_Output i) : SV_Target
+{
+   // Calculate albedo
+   half4 color = tex2D(_MainTex, i.uv) * _Color;
+
+   // Calculate lighting and add ambient light
+   half3 NdotL = saturate(dot(i.wNormal, _WorldSpaceLightPos0.xyz)) * _LightColor0.rgb;
+   NdotL += i.ambient;
+
+   // Apply lighting and darken the color with 20%
+   color.rgb *= NdotL;
+   color.rgb *= 0.8h;
+
+   return color;
+}
+                </code>
+            </pre>
+        </section>
+    </div>
     </p>
+
+    <hr>
+
 
     <h3>The second pass - the fins</h3>
     <p>
@@ -98,7 +213,108 @@
         It is important that you push the points using their own vertex normal. if you would use the edge vector then
         you can get broken silhouettes on edges that are supposed to be smooth!
     </div>
+
+    <div>
+        <section>
+                <pre>
+                    <code class="cpp codeBlock">
+struct VS_Data // Geometry shader input | this value is immediately send to the geometry shader
+{
+    float4 vertex : POSITION;
+    float3 normal : NORMAL;
+    float2 uv     : TEXCOORD0;
+};
+
+struct GS_Data
+{
+    float4 vertex  : SV_POSITION;
+    float3 wNormal : NORMAL;
+    float2 finUV   : TEXCOORD0; // the uv's for the fin texture
+    float2 uv      : TEXCOORD1; // the original uv's to color the fins based on the albedo texture
+    float3 ambient : TEXCOORD2; // Used to calculate ambient lighting
+};
+
+VS_Data vert( VS_Data input)
+{
+    return input;
+}
+
+// function to create and append a vertex to the Triangle Stream
+void CreateVertex(inout TriangleStream triStream,
+   float3 pos, float3 normal, float2 finUV, float2 uv)
+{
+    GS_Data data;
+    data.vertex = UnityObjectToClipPos(float4(pos, 1.0));
+    data.wNormal = UnityObjectToWorldNormal(normal);
+    data.finUV = finUV;
+    data.uv = TRANSFORM_TEX(uv, _MainTex);
+    data.ambient = ShadeSH9(half4(data.wNormal, 1));
+
+    triStrean.Append(data);
+}
+
+[maxvertexcount(4)] //  maximum 4 vertices since we only need to generate a quad
+void geom(line VS_Data input[2], inout TriangleStream triStream)
+{
+    // edge normal
+    float3 edgeNormal = normalize((input[0].normal + input[2].normal) / 2);
+
+    // calculate view direction using the center of the edge
+    float3 midPoint = (input[0].vertex + input[1].vertex) /2;
+    float3 viewDir = ObjSpaceViewDir(float4(midPoint, 1.0));
+
+    // See if the edge lays on the silhouette by checking the dot product and a threshold
+    float NdotV = dot(edgeNormal, viewDir);
+    if( NdotV > - _FinTreshold && NdotV < _FinTreshold)
+    {
+        // UV's for the fin texture
+        float2 uv  = float2(0.0f, 1.0f);
+        float2 uv1 = float2(1.0f, 1.0f);
+        float2 uv2 = float2(0.0f, 0.1f);
+        float2 uv3 = float2(1.0f, 0.1f);
+
+      #if UNITY_UV_STARTS_AT_TOP
+        uv.y  = 1 - uv.y;
+        uv1.y = 1 - uv1.t;
+        uv2.y = 1 - uv2.y;
+        uv3.y = 1 - uv3.y;
+      #endif
+
+        // Create the vertices of the quad
+        CreateVertex(triStream, input[0].vertex, edgeNormal, uv , input[0].uv);
+        CreateVertex(triStream, input[1].vertex, edgeNormal, uv1, input[1].uv);
+
+        // create the upper vertices by extruding along the VERTEX normal
+        CreateVertex(triStream, input[0].vertex + input[0].normal * (_FurLength * _FinLength), edgeNormal, uv2, input[0].uv);
+        CreateVertex(triStream, input[1].vertex + input[1].normal * (_FurLength * _FinLength), edgeNormal, uv3, input[1].uv);
+    }
+}
+
+half4 fragment(GS_Data input) : SV_Target
+{
+    // Diffuse color
+    half4 color = tex2D(_MainTex, input.uv ) * _Color;
+
+    // Fin texture
+    float finOpacity = tex2D(_FinOpacityTex, input.finUV).r;
+    color.a *= finOpacity;
+
+    // Lighting
+    float3 NdotL = saturate(dot(input.wNormal, _WorldSpaceLightPos0.xyz)) * _LightColor0.rgb;
+    NdotL += i.ambient;
+    color.rgb *= NdotL;
+
+    return color;
+}
+                    </code>
+                </pre>
+        </section>
+    </div>
+
     </p>
+    </p>
+
+    <hr>
 
     <h3>The third pass - the shells</h3>
     <p>
@@ -130,48 +346,98 @@
     output struct. (1 float4, 1 float3, 1 float2 and 1 int => 4 + 3 + 2 + 1 = 10). In total, this gives 900 scalar
     components. if we would save the ambient value ( another float3) in the struct then we would reach 11770 scalars and
     surpass the 1024 limit.
-    </p>
 
-    <!-- Portfolio Section -->
-    <div class="row">
-        <div class="col-lg-6 col-sm-6">
-            <div class="card">
-                <a href="Images/Projects/FurRendering/BearFur_Demo700x400.png"><img class="card-img-top"
-                                                                                    src="Images/Projects/FurRendering/BearFur_Demo700x400.png"
-                                                                                    alt=""></a>
-            </div>
-        </div>
+    <div>
+        <section>
+                <pre>
+                    <code class="cpp codeBlock">
+struct VS_Data
+{
+    float4 vertex  : POSITION;
+    float3 normal  : NORMAL;
+    float2 uv      : TEXCOORD0;
+};
 
-        <div class="col-lg-6 col-sm-6">
-            <div class="card">
-                <a href="Images/Projects/FurRendering/PantherFur_Demo700x400.png"><img class="card-img-top"
-                                                                                       src="Images/Projects/FurRendering/PantherFur_Demo700x400.png"
-                                                                                       alt=""></a>
-            </div>
-        </div>
+struct GS_Data
+{
+    float4 vertex  : SV_POSITION;
+    float3 wNormal : NORMAL;
+    float2 uv      : TEXCOORD0;
+    int layer      : TEXCOORD1; // the current layer index that this vertex belongs to
+}
 
-        <div class="col-lg-6 col-sm-6">
-            <div class="card">
-                <a href="Images/Projects/FurRendering/SnowFur_Demo700x400.png"><img class="card-img-top"
-                                                                                    src="Images/Projects/FurRendering/SnowFur_Demo700x400.png"
-                                                                                    alt=""></a>
-            </div>
-        </div>
+VS_Data vert(VS_Data input)
+{
+    return input;
+}
 
-        <div class="col-lg-6 col-sm-6">
-            <div class="card">
-                <a href="Images/Projects/FurRendering/TigerFur_Demo700x400.png"><img class="card-img-top"
-                                                                                     src="Images/Projects/FurRendering/TigerFur_Demo700x400.png"
-                                                                                     alt=""></a>
-            </div>
-        </div>
+void CreateVertex(inout TriangleStream triStream, float3 pos, float3 normal, float2 uv, int layer)
+{
+    GS_Data data;
+
+    data.vertex = UnityObjectToClipPos(float4(pos, 1.0));
+    data.wNormal = UnityObjectToWorldNormal(normal);
+    data.uv = TRANSFORM_TEX(uv, _MainTex);
+    data.layer = layer;
+
+    triStream.Append(data);
+}
+
+[maxvertexcount(30*3)]
+void geom(triangle VS_Data verts[3], inout TriangleStream triStream)
+{
+
+    // Calculate the height difference between each layer
+    float heightOffset = _FurLength / ((float) _LayerAmount);
+
+    for(uint i = 0; i < (uint)_LayerAmount; ++i)
+    {
+    // Calculate the new vertex positions by adding the height offset each iteration
+        for(uint j = 0; j < 3; ++j)
+        {
+            verts[j].vertex.xyz = verts[j].vertex.xyz + (verts[j].normal * heightOffset); // add the height offset to the current position
+        }
+
+        // Create the vertices
+        CreateVertex(triStream, verts[0].vertex, verts[0].normal, verts[0].uv, i+1);
+        CreateVertex(triStream, verts[1].vertex, verts[1].normal, verts[1].uv, i+1);
+        CreateVertex(triStream, verts[2].vertex, verts[2].normal, verts[2].uv, i+1);
+
+        triStream.RestartStrip();
+    }
+}
+
+float4 fragment(GS_Data input) : SV_Target
+{
+    // Diffuse Color
+    half4 color = tex2D(_MainTex, input.uv) * _Color;
+
+    // Fur opacity
+    float furOpacity = tex2D(_FurOpacityTex, input.uv * _FurDensity).r;
+    float furLength = tex2D(_ShellLengthTex, input.uv);
+
+    // Shell opacity
+    float opacity = 1 - ((float)input.layer / ((float)_LayerAmount - (float)_LayerOpacity));
+    color.a = opacity * furOpacity.r * furLength;
+
+    // Lighting
+    float3 NdotL = saturate(dot(input.wNormal, _WorldSpaceLightPos0.xyz)) * _LightColor0.rgb;
+    float3 ambient = ShadeSH9(half4(input.wNormal, 1.0));
+    NdotL += ambient;
+    color.rgb *= NdotL;
+
+    return color;
+}
+                    </code>
+                </pre>
+        </section>
     </div>
-    <!-- /.row -->
-
+    </p>
 
     <p>
     <h3>References</h3>
-    <a href="http://developer.download.nvidia.com/SDK/10.5/direct3d/Source/Fur/doc/FurShellsAndFins.pdf" target="_blank">
+    <a href="http://developer.download.nvidia.com/SDK/10.5/direct3d/Source/Fur/doc/FurShellsAndFins.pdf"
+       target="_blank">
         White Paper - Fur (using Shells and Fins)
     </a>
     </p>
