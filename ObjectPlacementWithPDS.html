@@ -199,6 +199,7 @@
 
     <hr>
 
+
     <h3>Checking which points are inside the shape</h3>
     <p>
         To know which points are inside the shape, I found a very fast and short algorithm on the Unity3D wiki.
@@ -206,8 +207,18 @@
         it crosses. At each crossing, a boolean is switched between true and false. At the end of the ray, this boolean
         is returned.
 
-    <div>
-        <section>
+    <div class="row">
+        <div class="col-lg-5 col-sm-6 portfolio-item">
+            <pre>
+                <div style='position:relative; padding-bottom:calc(56.25% + 44px)'>
+                    <iframe src='https://gfycat.com/ifr/EarlyForthrightHeifer' frameborder='0' scrolling='no'
+                            width='100%' height='100%' style='position:absolute;top:0;left:0;' allowfullscreen></iframe>
+                </div>
+            </pre>
+        </div>
+        <div class="col-lg-7 col-sm-6 portfolio-item">
+            <div>
+                <section>
                 <pre>
                     <code class="csharp codeBlock">
 public static bool ContainsPoint(List&ltVector2&gt points, Vector2 p)
@@ -217,11 +228,15 @@ public static bool ContainsPoint(List&ltVector2&gt points, Vector2 p)
 
     for(int i = 0; i < points.Count; i++)
     {
-        if((points[i].y < p.y && points[j].y >= p.y ||
-            points[j].y < p.y && points[i].y >= p.y) &&
-            (points[i].x <= p.x || points[j].x <= p.x))
+        Vector2 pointA = points[i];
+        Vector2 pointB = points[j];
+
+        if((pointA.y < p.y && pointB.y >= p.y ||
+            pointB.y < p.y && pointA.y >= p.y) &&
+            (pointA.x <= p.x || pointB.x <= p.x))
         {
-            if(points[i].x + (p.y - points[i].y) / (points[j].y - points[i].y) * (points[j].x - points[i].x) < p.x)
+            if(pointA.x + (p.y - pointA.y) /
+              (pointB.y - pointA.y) * (pointB.x - pointA.x) < p.x)
             {
                 inside = !inside;
             }
@@ -233,9 +248,15 @@ public static bool ContainsPoint(List&ltVector2&gt points, Vector2 p)
 }
                     </code>
                 </pre>
-        </section>
+                </section>
+            </div>
+        </div>
+
     </div>
+
+
     </p>
+
 
     <hr>
 
