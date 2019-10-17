@@ -104,7 +104,7 @@
 
     <div class="row">
         <div>
-
+            test
         </div>
 
     </div>
@@ -146,29 +146,56 @@
     <hr>
 
     <h3>How it works</h3>
-    <p>
-        Before we start generation the points we have to set up all the needed inputs. The algorithm itself only takes
-        in
-        <b>r</b> and <b>k</b> as input. <b>r</b> is the minimum distance between the samples and <b>k</b> is a constant
-        which is the maximum samples before rejection. First, we initialize a 2D array for storing the samples.<br> The
-        cell
-        size of this grid is bounded by <b>r/&#8730n</b> where <b>n</b> is the number of dimensions (2 in this case) so that
-        each cell will contain at most 1 sample.
-    </p>
-    <p>
-        In step 1 we generate the initial sample that is randomly chosen from the domain. This sample is inserted into
-        the grid and added to the active list, this active list holds the current samples which we generate new samples
-        from.
-    </p>
-    <p>
-        After we have our initial sample, while the active list is not empty, we choose a random index from that list
-        and generate up to <b>k</b> points around it. These points lay between <b>r</b> and <b>2*r</b> distance from the
-        current index. For each point, we check if it is between <b>r</b> distance from any of the samples saved in the
-        grid and since the points are generated between <b>r</b> and <b>2*r</b>, we can skip unnecessary checks by only
-        checking the neighboring cells of the current index. If we found a point that is adequately far from existing
-        samples, we save it to the grid and the active list. If after <b>k</b> samples, no such points are found, we
-        remove the current index from the active list.
-    </p>
+    <div class="row">
+        <div class="col-lg-6 col-sm-6 portfolio-item">
+            <p>
+                Before we start generating the points we have to set up all the needed inputs. The algorithm itself only
+                takes
+                in
+                <b>r</b> and <b>k</b> as input. <b>r</b> is the minimum distance between the samples and <b>k</b> is a
+                constant
+                which is the maximum samples before rejection. First, we initialize a 2D grid for storing the
+                samples.<br> The
+                cell
+                size of this grid is bounded by <b>r/&#8730n</b> where <b>n</b> is the number of dimensions (2 in this
+                case) so that
+                each cell will contain at most 1 sample.
+            </p>
+            <p>
+                In step 1 we generate the initial sample that is randomly chosen from the domain. This sample is
+                inserted into
+                the grid and added to the active list, this active list holds the current samples which we generate new
+                samples
+                from.
+            </p>
+            <p>
+                After we have our initial sample, while the active list is not empty, we choose a random index from that
+                list
+                and generate up to <b>k</b> points around it. These points lay between <b>r</b> and <b>2*r</b> distance
+                from the
+                current index. For each point, we check if it is between <b>r</b> distance from any of the samples saved
+                in the
+                grid and since the points are generated between <b>r</b> and <b>2*r</b>, we can skip unnecessary checks
+                by only
+                checking the neighboring cells of the current index. If we found a point that is adequately far from
+                existing
+                samples, we save it to the grid and the active list. If after <b>k</b> samples, no such points are
+                found, we
+                remove the current index from the active list.
+            </p>
+        </div>
+        <div class="col-lg-6 col-sm-6 portfolio-item">
+            <div style='position:relative; padding-bottom:calc(56.25% + 44px)'>
+                <iframe src='https://gfycat.com/ifr/DenseMistyBarnswallow' frameborder='0' scrolling='no' width='100%'
+                        height='100%' style='position:absolute;top:0;left:0;' allowfullscreen></iframe>
+            </div>
+        </div>
+        <div>
+
+        </div>
+
+    </div>
+
 
     <hr>
 

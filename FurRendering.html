@@ -202,7 +202,7 @@ half4 fragment(VS_Output i) : SV_Target
         shader.
     </p>
     <p>
-        For the input of our geometry shader we choose <b>line</b> as our <b>Primitive Type</b>. Each line consist out
+        For the input of our geometry shader we choose <b>line</b> as our <b>Primitive Type</b>. Each line consists out
         of 2 points (vertices), which gives us enough information to generate the quad. Since we have our edge, we have
         to determine if it lays on the silhouette and has to be extruded or not. If the dot product of the <b>edge
         normal</b> and the <b>eye vector</b> is close to <b>0</b>, then the edge lays on the silhouette.
@@ -321,13 +321,12 @@ half4 fragment(GS_Data input) : SV_Target
         The last step in rendering our fur is the shells. These shells are rendered from the inside out by generating
         the mesh <b>n</b> times. Every time the mesh is generated, we extrude it along its normal by an amount
         proportional to
-        the index of the shell. Because of this, we make use of a second geometry shader but instead of using quads, we
-        use triangles.
+        the index of the shell. Because of this, we make use of a second geometry shader with triangles.
     </p>
     <p>
         To generate the mesh multiple times we use a for loop to iterate <b>n</b> amount of times. Each iteration, we
         use the
-        input vertices as a base and then offset them using the current later index. This makes that every time we
+        input vertices as a base and then offset them using the current layer index. This makes that every time we
         generate a new layer, it is extruded a little bit further than the previous layer. to calculate this offset we
         take the length of the fur and divide it by the number of layers we want to generate.
     </p>
@@ -344,7 +343,7 @@ half4 fragment(GS_Data input) : SV_Target
     </div>
     In this case, our maximum vertex count is 90 (30 triangles * 3 vertices) and we have 10 scalar components in the
     output struct. (1 float4, 1 float3, 1 float2 and 1 int => 4 + 3 + 2 + 1 = 10). In total, this gives 900 scalar
-    components. if we would save the ambient value ( another float3) in the struct then we would reach 11770 scalars and
+    components. if we would save the ambient value ( another float3) in the struct, then we would reach 11770 scalars and
     surpass the 1024 limit.
 
     <div>
