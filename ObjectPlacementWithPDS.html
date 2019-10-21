@@ -217,22 +217,17 @@ public static bool ContainsPoint(List&ltVector2&gt points, Vector2 p)
     int j = points.Count - 1;
     bool inside = false;
 
-    for(int i = 0; i < points.Count; i++)
+    for(int i = 0; i < points.Count; j = i++)
     {
         Vector2 pointA = points[i];
         Vector2 pointB = points[j];
 
-        if((pointA.y < p.y && pointB.y >= p.y ||
-            pointB.y < p.y && pointA.y >= p.y) &&
-            (pointA.x <= p.x || pointB.x <= p.x))
+        if((pointA.y < p.y && p.y <= pointB.y) || // is point P between
+           (pointB.y < p.y && p.y <= pointA.y) && // point A and point B vertically
+           p.x <  (p.y - pointA.y) / (pointB.y - pointA.y) * (pointB.x - pointA.x) + pointA.x) // project point P on the edge AB and compare P'.x to P.x
         {
-            if(pointA.x + (p.y - pointA.y) /
-              (pointB.y - pointA.y) * (pointB.x - pointA.x) < p.x)
-            {
-                inside = !inside;
-            }
+            inside = !inside;
         }
-        j = i;
     }
 
     return inside;
