@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Poisson-Disc Sampling</title>
+    <title>Subsurface Scattering</title>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -80,7 +80,7 @@
         <div class="carousel-inner portfolio-slideshow" role="listbox">
             <!-- Slide One - Set the background image for this slide in the line below -->
             <div class="carousel-item active"
-                 style="background-image: url('http://placehold.it/700x400.png')">
+                 style="background-image: url('Images/Projects/SubsurfaceScattering/SubsurfaceScattering_1050x600.png')">
             </div>
         </div>
     </div>
@@ -97,28 +97,67 @@
         values for translucent.
     </p>
 
+
+    <div>
+        <section>
+                <pre>
+                    <code class="GLSL codeBlock">
+
+float3 ambient; // Ambient value that is visible from all angles
+float tPower; // Power value for direct translucency
+float tNormalDistortion; // Shifts the inverted light vector towards the surface normal
+float tThickness; // Precomputed local thickness map. Used for both direct and indirect translucency
+float tScale; // defines how much light will go through with the back translucency
+
+float3 tLightDirWS = lightDirWS + normalWS * tNormalDistortion;
+float tVdotL = pow(saturate(dot(viewDirWS, -tLightDirWS)), tPower) * tScale;
+float3 translucency = lightAttenuation * (tVdotL + ambient) * tThickness;
+
+outColor.rgb += albedo * _LightColor * translucency;
+
+                    </code>
+                </pre>
+        </section>
+    </div>
+
+
     <h3>Computing Local Thickness maps</h3>
     <p>
-        The workflow of creating a local thickness map relies on a normal0inverted computation of Ambient Occlusion
+        The workflow of creating a local thickness map relies on a normal inverted computation of Ambient Occlusion
         (AO). Since AO determines how much light arrives at a surface point, we can use this information for the inside
-        of the shape. Simply inverting the AO map gives different results that the workflow explained below.
+        of the shape. Simply inverting the AO map gives different results than the workflow explained below.
     </p>
     <p>
     <ul>
         <li>Flip the normals and make sure your mesh is properly UV-unwrapped</li>
         <li>Set the <b>Dark</b> color to the maximum value you want for translucency (white - max, black - min)</li>
         <li>Set the <b>Bright</b> color to the minimum value you want for translucency</li>
-        <li>The <b>Max distance</b> is the distance traveled by the rays. If you have a big object, make the distance larger. The opposite for a small object.</li>
+        <li>The <b>Max distance</b> is the distance traveled by the rays. If you have a big object, make the distance
+            larger. The opposite for a small object.
+        </li>
     </ul>
+    <br>
+    <div class="align-content-center">
+        <div class="card">
+            <img class="card-img-top" src="Images/Projects/SubsurfaceScattering/AOvsIAOvsThickness_1050x600.png">
+            <div class="card-body">
+                <div class="card-text">The difference between thickness map (left), ambient occlusion (middle) and the
+                    inverted ambient occlusion (right)
+                </div>
+            </div>
+        </div>
+    </div>
     </p>
 
 
     <p>
     <h3>References</h3>
-    <div><a href="http://www.dice.se/news/approximating-translucency-fast-cheap-convincing-subsurface-scattering-look/" target="_blank">Fast
+    <div><a href="http://www.dice.se/news/approximating-translucency-fast-cheap-convincing-subsurface-scattering-look/"
+            target="_blank">Fast
         Approximating Translucency for a Fast, Cheap and Convincing Subsurface Scattering Look</a></div>
-    <div><a href="https://colinbarrebrisebois.com/2011/04/04/approximating-translucency-part-ii-addendum-to-gdc-2011-talk-gpu-pro-2-article/" target="_blank">Poisson Disk
-        Creating Thickness maps in 3ds max</a></div>
+    <div>
+        <a href="https://colinbarrebrisebois.com/2011/04/04/approximating-translucency-part-ii-addendum-to-gdc-2011-talk-gpu-pro-2-article/"
+           target="_blank">Creating Thickness maps in 3ds max</a></div>
     </p>
 
 

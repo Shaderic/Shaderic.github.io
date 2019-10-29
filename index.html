@@ -50,11 +50,20 @@
         <ol class="carousel-indicators">
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
             <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
             <!--  <li data-target="#carouselExampleIndicators" data-slide-to="2"></li> -->
         </ol>
         <div class="carousel-inner" role="listbox">
             <!-- Slide One - Set the background image for this slide in the line below -->
             <div class="carousel-item active"
+                 style="background-image: url('Images/Projects/SubsurfaceScattering/SubsurfaceScattering_1900x1080.png')">
+                <div class="carousel-caption d-none d-md-block">
+                    <h3>Subsurface Scattering</h3>
+                    <p>An approximation for a fast, cheap and convincing subsurface scattering look</p>
+                </div>
+            </div>
+            <!-- Slide One - Set the background image for this slide in the line below -->
+            <div class="carousel-item"
                  style="background-image: url('Images/Projects/FurRendering/FurRendering_1900x1080.png')">
                 <div class="carousel-caption d-none d-md-block">
                     <h3>Fur rendering</h3>
@@ -137,10 +146,29 @@
     <h2>Portfolio</h2>
 
     <div class="row">
+        <div class="col-lg-4 col-sm-6 portfolio-item">
+            <div class="card h-100">
+                <a href="SubsurfaceScattering.html"><img class="card-img-top"
+                                                         src="Images/Projects/SubsurfaceScattering/SubsurfaceScattering_700x400.png"
+                                                         alt=""></a>
+                <div class="card-body">
+                    <h4 class="card-title">
+                        <a href="SubsurfaceScattering.html">Subsurface scattering in Unity</a>
+                    </h4>
+                    <p class="card-text">Almost every material in the real world is slightly translucent, this means
+                        that light enters the material and
+                        is scattered around and then exits the surface.
+                        I have updated the Unity’s standard shader based on Dice’s implementation which presents a fast
+                        and scalable
+                        approximation of translucency for a convincing subsurface scattering look.</p>
+                </div>
+            </div>
+        </div>
 
         <div class="col-lg-4 col-sm-6 portfolio-item">
             <div class="card h-100">
-                <a href="FurRendering.html"><img class="card-img-top" src="Images/Projects/FurRendering/SnowFur_Demo700x400.png" alt=""></a>
+                <a href="FurRendering.html"><img class="card-img-top"
+                                                 src="Images/Projects/FurRendering/SnowFur_Demo700x400.png" alt=""></a>
                 <div class="card-body">
                     <h4 class="card-title">
                         <a href="FurRendering.html">Fur rendering using fins and shells</a>
@@ -154,13 +182,15 @@
 
         <div class="col-lg-4 col-sm-6 portfolio-item">
             <div class="card h-100">
-                <a href="ObjectPlacementWithPDS.html"><img class="card-img-top" src="Images/Projects/DiscSampling/Trees_700x400.png" alt=""></a>
+                <a href="ObjectPlacementWithPDS.html"><img class="card-img-top"
+                                                           src="Images/Projects/DiscSampling/Trees_700x400.png" alt=""></a>
                 <div class="card-body">
                     <h4 class="card-title">
                         <a href="ObjectPlacementWithPDS.html">
                             Natural object placement using Poisson Disk Sampling</a>
                     </h4>
-                    <p class="card-text">While looking for a way to place objects in a scene in a natural, evenly distributed way I discovered Poisson Disk Sampling.</p>
+                    <p class="card-text">While looking for a way to place objects in a scene in a natural, evenly
+                        distributed way I discovered Poisson Disk Sampling.</p>
                 </div>
             </div>
         </div>
