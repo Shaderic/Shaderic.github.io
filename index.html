@@ -24,6 +24,9 @@
 <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light fixed-top">
     <div class="container">
         <a class="navbar-brand" href="index.html">Cédric Van Huffelen</a>
+            <span class="navbar-text">
+              Technical Artist
+            </span>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
                 data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -48,57 +51,6 @@
     </div>
 </nav>
 
-<header>
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-            <!--  <li data-target="#carouselExampleIndicators" data-slide-to="2"></li> -->
-        </ol>
-        <div class="carousel-inner" role="listbox">
-            <!-- Slide One - Set the background image for this slide in the line below -->
-            <div class="carousel-item active"
-                 style="background-image: url('PortfolioProjects/VolumetricLighting/VolumetricLight1900x1080.jpg')">
-                <div class="carousel-caption d-none d-md-block">
-                    <h3>Volumetric Lighting</h3>
-                    <a href="PortfolioProjects/VolumetricLighting/VolumetricRendering.html" class="btn btn-primary">Learn More</a>
-                </div>
-            </div>
-            <!-- Slide One - Set the background image for this slide in the line below -->
-            <div class="carousel-item"
-                 style="background-image: url('PortfolioProjects/SubsurfaceScattering/SubsurfaceScattering1900x1080.png')">
-                <div class="carousel-caption d-none d-md-block">
-                    <h3>Subsurface Scattering</h3>
-                    <a href="PortfolioProjects/SubsurfaceScattering/SubsurfaceScattering.html" class="btn btn-primary">Learn More</a>
-                </div>
-            </div>
-            <!-- Slide Two - Set the background image for this slide in the line below -->
-            <div class="carousel-item"
-                 style="background-image: url('PortfolioProjects/ObjectPlacementWithPDS/PoissonDiscSampling_1900x1080.png')">
-                <div class="carousel-caption d-none d-md-block">
-                    <h3>Natural object placement using Poisson Disk Sampling</h3>
-                    <a href="PortfolioProjects/ObjectPlacementWithPDS/ObjectPlacementWithPDS.html" class="btn btn-primary">Learn More</a>
-                </div>
-            </div>
-            <!-- Slide Three - Set the background image for this slide in the line below -->
-            <!--   <div class="carousel-item" style="background-image: url('http://placehold.it/1900x1080')">
-                 <div class="carousel-caption d-none d-md-block">
-                   <h3>Third Slide</h3>
-                   <p>This is a description for the third slide.</p>
-                 </div>
-               </div>-->
-        </div>
-        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
-    </div>
-</header>
 
 <!-- Page Content -->
 <div class="container">
@@ -140,6 +92,41 @@
                         I have updated the Unity’s standard shader based on Dice’s implementation which presents a fast
                         and scalable
                         approximation of translucency for a convincing subsurface scattering look.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-sm-6 portfolio-item">
+            <div class="card h-100">
+                <a href="PortfolioProjects/ObjectPlacementWithPDS/ObjectPlacementWithPDS.html"><img class="card-img-top"
+                                                                      src="PortfolioProjects/ObjectPlacementWithPDS/Trees_700x400.png" alt=""></a>
+                <div class="card-body">
+                    <h4 class="card-title">
+                        <a href="PortfolioProjects/ObjectPlacementWithPDS/ObjectPlacementWithPDS.html">Natural object placement using Poisson Disk Sampling</a>
+                    </h4>
+                    <p class="card-text">
+                        While looking for a way to place objects in a scene in a natural, evenly
+                        distributed way I discovered Poisson Disk Sampling.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <h2>Professional Work</h2>
+
+    <div class="row">
+        <div class="col-lg-4 col-sm-6 portfolio-item">
+            <div class="card h-100">
+                <a href="ProfessionalWorkProjects/EXRWater/EXRWater.html"><img class="card-img-top"
+                                                                      src="ProfessionalWorkProjects/EXRWater/EXRWater700x400.png" alt=""></a>
+                <div class="card-body">
+                    <h4 class="card-title">
+                        <a href="ProfessionalWorkProjects/EXRWater/EXRWater.html">Water Shader for EXR</a>
+                    </h4>
+                    <p class="card-text">
+                        For the exercise game EXR, I had to create a new water shader that feels realistic but also fits the cartoony style of the game.
+                <br>My work consisted of adding several features and improve the general performance of the water shader itself. </p>
                 </div>
             </div>
         </div>
