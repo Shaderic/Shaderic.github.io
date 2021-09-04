@@ -1,3 +1,0 @@
-I"<p>Almost every material in the real world is slightly translucent, this means that light enters the material and is scattered around and then exits the surface.
-In computer graphics, this is mostly done with ray tracing. This, however, is a very expensive computation to use in real-time so other methods have to be used. I have updated the Unity’s standard shader based on Dice’s implementation which presents a fast and scalable approximation of translucency for a convincing subsurface scattering look.</p>
-:ET

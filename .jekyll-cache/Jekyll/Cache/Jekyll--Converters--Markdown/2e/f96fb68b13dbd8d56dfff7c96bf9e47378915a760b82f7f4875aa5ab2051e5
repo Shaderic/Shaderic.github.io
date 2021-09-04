@@ -1,2 +1,0 @@
-I";<p>I recently came across a tweet from Pico Tanks on where they create regions, defined by a shape, where players can hide. What stands out to me the most, is how the trees in those regions never seem to overlap. After looking more into this, I found an algorithm called <strong>Poisson disk sampling</strong>.</p>
-:ET
