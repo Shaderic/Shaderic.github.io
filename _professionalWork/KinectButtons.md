@@ -5,7 +5,7 @@ description:
 weight: 102
 usemathjax: true
 showInFrontPage: true
-displayImage: /assets/Images/VirtualButtons/VirtualButtons700x300.png
+image: /assets/Images/VirtualButtons/VirtualButtons700x300.png
 pageintro: While playing around with depth cameras, I wanted to see if it was possible to create buttons with no physical shape.
 ---
 

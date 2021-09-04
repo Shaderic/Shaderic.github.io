@@ -5,7 +5,7 @@ description:
 weight: 98
 usemathjax: true
 showInFrontPage: true
-displayImage: /assets/Images/poissonDiskSampling/Trees_700x300.webp
+image: /assets/Images/poissonDiskSampling/Trees_700x300.webp
 pageintro: "While looking for a way to place objects in a scene in a natural, evenly distributed way I discovered Poisson Disk Sampling.."
 ---
 

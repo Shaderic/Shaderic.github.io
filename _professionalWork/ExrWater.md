@@ -5,7 +5,7 @@ description: The game that makes indoor rowing fun!
 weight: 101
 usemathjax: true
 showInFrontPage: true
-displayImage: /assets/Images/EXRWater/EXRWater700x300.webp
+image: /assets/Images/EXRWater/EXRWater700x300.webp
 pageintro: For the exercise game EXR, I had to create a new water shader that feels realistic but also fits the cartoony style of the game. My work consisted of adding several features and improve the general performance of the water shader itself. 
 ---
 

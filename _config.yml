@@ -30,3 +30,4 @@ paginate: 5
 plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
+

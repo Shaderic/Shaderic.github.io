@@ -5,7 +5,7 @@ description: Do you know what to do in an emergency?
 weight: 100
 usemathjax: true
 showInFrontPage: true
-displayImage: /assets/Images/BEReady/BeReady700x300.webp
+image: /assets/Images/BEReady/BeReady700x300.webp
 pageintro: The National Crisis Center has prepared a fascinating interactive three-part curriculum for primary school students. The package is supplemented with the exciting online game BE-Ready, which prepares the students in a playful way for every emergency situation. 
 ---
 

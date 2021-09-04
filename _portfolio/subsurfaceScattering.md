@@ -5,7 +5,7 @@ description:
 weight: 99
 usemathjax: true
 showInFrontPage: true
-displayImage: /assets/Images/subsurfacescattering/SubsurfaceScattering700x300.webp
+image: /assets/Images/subsurfacescattering/SubsurfaceScattering700x300.webp
 pageintro: "Almost every material in the real world is slightly translucent, this means that light enters the material and is scattered around and then exits the surface. I have updated the Unity’s standard shader based on Dice’s implementation which presents a fast and scalable approximation of translucency for a convincing subsurface scattering look. "
 ---
 

@@ -5,7 +5,7 @@ description:
 weight: 100
 usemathjax: true
 showInFrontPage: true
-displayImage: /assets/Images/VolumetricLights/VolumetricLight700x300.webp
+image: /assets/Images/VolumetricLights/VolumetricLight700x300.webp
 pageintro: "Volumetric light effects are caused by light being scattered in a humid or dusty environment. It's a beautiful looking natural phenomenon also known as 'god rays'.
 To challenge myself, I tried implementing this effect in real-time in the Unity game engine."
 ---
