@@ -6,7 +6,7 @@ weight: 102
 usemathjax: true
 showInFrontPage: true
 displayImage: /assets/Images/VirtualButtons/VirtualButtons700x300.png
-pageintro: For a project at HITLab @ Howest, I had been given the task to create a game to help visually impaired children train their vision.
+pageintro: While playing around with depth cameras, I wanted to see if it was possible to create buttons with no physical shape.
 ---
 
 While playing around with depth cameras, I wanted to see if it was possible to create buttons with no physical shape.  
