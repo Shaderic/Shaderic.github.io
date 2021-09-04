@@ -1,174 +1,86 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Cédric Van Huffelen</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="css/modern-business.css" rel="stylesheet">
-
-</head>
-
-<body>
-
-<!-- Navigation -->
-<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light fixed-top">
-    <div class="container">
-        <a class="navbar-brand" href="index.html">Cédric Van Huffelen</a>
-            <span class="navbar-text">
-              Technical Artist
-            </span>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-                data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
-                aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="about.html">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="portfolio.html">Portfolio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="professionalWork.html">Professional Work</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="resume.html">Resume</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
+---
+layout: home
+title: Cédric Van Huffelen
+---
 
 <!-- Page Content -->
 <div class="container">
 
-    <h1 class="my-4"></h1>
+  <!-- tutorials Section -->
+  <h1>Tutorials</h1>
 
-    <!-- Portfolio Section -->
-    <h2>Portfolio</h2>
-
-    <div class="row">
-        <div class="col-lg-4 col-sm-6 portfolio-item">
-            <div class="card h-100">
-                <a href="PortfolioProjects/VolumetricLighting/VolumetricRendering.html"><img class="card-img-top"
-                                                                                             src="PortfolioProjects/VolumetricLighting/VolumetricLight_700x400.png"
-                                                                                             alt=""></a>
-                <div class="card-body">
-                    <h4 class="card-title">
-                        <a href="PortfolioProjects/VolumetricLighting/VolumetricRendering.html">Volumetric Lighting in Unity</a>
-                    </h4>
-                    <p class="card-text">Volumetric light effects are caused by light being scattered in a humid or dusty environment.
-                        It's a beautiful looking natural phenomenon also known as 'god rays'.
-                        <br>To challenge myself, I tried implementing this effect in real-time in the Unity game engine.</p>
-                </div>
-            </div>
+  <div class="row">
+    {% assign tutorials = site.tutorials | sort: 'weight' | reverse %}
+    {% for tutorial in tutorials %}
+    {% if tutorial.showInFrontPage == true %}
+    <div class="col-lg-4 col-sm-6 portfolio-item">
+      <a class="card-link" href="{{ tutorial.url }}">
+      <div class="project-card card h-100">
+        <div >
+          <img class="card-img-top previewImage" src="{{ tutorial.displayImage}} " alt=""/>
         </div>
-
-        <div class="col-lg-4 col-sm-6 portfolio-item">
-            <div class="card h-100">
-                <a href="PortfolioProjects/SubsurfaceScattering/SubsurfaceScattering.html"><img class="card-img-top"
-                                                                                                src="PortfolioProjects/SubsurfaceScattering/SubsurfaceScattering700x400.png"
-                                                                                                alt=""></a>
-                <div class="card-body">
-                    <h4 class="card-title">
-                        <a href="PortfolioProjects/SubsurfaceScattering/SubsurfaceScattering.html">Subsurface scattering in Unity</a>
-                    </h4>
-                    <p class="card-text">Almost every material in the real world is slightly translucent, this means
-                        that light enters the material and
-                        is scattered around and then exits the surface.
-                        I have updated the Unity’s standard shader based on Dice’s implementation which presents a fast
-                        and scalable
-                        approximation of translucency for a convincing subsurface scattering look.</p>
-                </div>
-            </div>
+        <div class="card-body">
+          <h4 class="card-title">
+            {{ tutorial.title }}
+          </h4>
+          <p class="card-text">{{ tutorial.pageintro }}</p>
         </div>
-
-        <div class="col-lg-4 col-sm-6 portfolio-item">
-            <div class="card h-100">
-                <a href="PortfolioProjects/ObjectPlacementWithPDS/ObjectPlacementWithPDS.html"><img class="card-img-top"
-                                                                      src="PortfolioProjects/ObjectPlacementWithPDS/Trees_700x400.png" alt=""></a>
-                <div class="card-body">
-                    <h4 class="card-title">
-                        <a href="PortfolioProjects/ObjectPlacementWithPDS/ObjectPlacementWithPDS.html">Natural object placement using Poisson Disk Sampling</a>
-                    </h4>
-                    <p class="card-text">
-                        While looking for a way to place objects in a scene in a natural, evenly
-                        distributed way I discovered Poisson Disk Sampling.</p>
-                </div>
-            </div>
-        </div>
-
+      </div>
+    </a>
     </div>
+    {% endif %}
+    {% endfor %}
+  </div>
 
-    <h2>Professional Work</h2>
+  <!-- Portfolio Section -->
+  <h1>Portfolio</h1>
 
-    <div class="row">
-        <div class="col-lg-4 col-sm-6 portfolio-item">
-            <div class="card h-100">
-                <a href="ProfessionalWorkProjects/EXRWater/EXRWater.html"><img class="card-img-top"
-                                                                      src="ProfessionalWorkProjects/EXRWater/EXRWater700x400.png" alt=""></a>
-                <div class="card-body">
-                    <h4 class="card-title">
-                        <a href="ProfessionalWorkProjects/EXRWater/EXRWater.html">Water Shader for EXR</a>
-                    </h4>
-                    <p class="card-text">
-                        For the exercise game EXR, I had to create a new water shader that feels realistic but also fits the cartoony style of the game.
-                <br>My work consisted of adding several features and improve the general performance of the water shader itself. </p>
-                </div>
-            </div>
+  <div class="row">
+    {% assign portfolio_items = site.portfolio | sort: 'weight' | reverse %}
+    {% for item in portfolio_items %}
+    {% if item.showInFrontPage == true %}
+    <div class="col-lg-4 col-sm-6 portfolio-item">
+      <a class="card-link" href="{{ item.url }}">
+      <div class="project-card card h-100">
+        <div >
+          <img class="card-img-top previewImage" src="{{ item.displayImage}} " alt=""/>
         </div>
-
-        <div class="col-lg-4 col-sm-6 portfolio-item">
-            <div class="card h-100">
-                <a href="ProfessionalWorkProjects/BeReady/BeReady.html"><img class="card-img-top"
-                                                                      src="ProfessionalWorkProjects/BeReady/BeReady700x400.png" alt=""></a>
-                <div class="card-body">
-                    <h4 class="card-title">
-                        <a href="ProfessionalWorkProjects/BeReady/BeReady.html">Be-Ready</a>
-                    </h4>
-                    <p class="card-text">
-                        The National Crisis Center has prepared a fascinating interactive three-part curriculum for
-                        primary school students. The package is supplemented with the exciting online game BE-Ready, which prepares the
-                        students in a playful way for every emergency situation.</p>
-                </div>
-            </div>
+        <div class="card-body">
+          <h4 class="card-title">
+            {{ item.title }}
+          </h4>
+          <p class="card-text">{{ item.pageintro }}</p>
         </div>
-
+      </div>
+    </a>
     </div>
-    <!-- /.row -->
+    {% endif %}
+    {% endfor %}
+  </div>
 
-    <!-- Features Section -->
+  <!-- professional Work -->
+  <h1>Professional Work</h1>
 
-    <hr>
+  <div class="row">
+    {% assign work_items = site.professionalWork | sort: 'weight' | reverse %}
+    {% for work in work_items %} {% if work.showInFrontPage == true %}
+    <div class="col-lg-4 col-sm-6 portfolio-item">
+      <a class="card-link" href="{{ work.url }}">
+      <div class="project-card card h-100">
+        <div >
+          <img class="card-img-top previewImage" src="{{ work.displayImage}} " alt=""/>
+        </div>
+        <div class="card-body">
+          <h4 class="card-title">{{ work.title }}</h4>
+          <p class="card-text">{{ work.pageintro }}</p>
+        </div>
+      </div>
+    </a>
+    </div>
+    {% endif %}
+    {% endfor %}
+  </div>
+  <!-- /.row -->
 
+  <!-- Features Section -->
 </div>
-<!-- /.container -->
-
-<!-- Footer -->
-<footer class="py-5 bg-light">
-    <div class="container">
-        <p class="m-0 text-center text-black">Copyright &copy; Cédric Van Huffelen 2020</p>
-    </div>
-    <!-- /.container -->
-</footer>
-
-<!-- Bootstrap core JavaScript -->
-<script src="vendor/jquery/jquery.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-</body>
-
-</html>

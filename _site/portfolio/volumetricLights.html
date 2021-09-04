@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <title>Volumetric Lighting</title>
+  <link rel="stylesheet" href="/assets/css/styles.css" />
+  <!-- generics -->
+  <link rel="icon" href="/assets/Images/favicons/favicon_32.png" sizes="32x32" />
+  <link rel="icon" href="/assets/Images/favicons/favicon_128.png" sizes="128x128" />
+  <link rel="icon" href="/assets/Images/favicons/favicon_192.png" sizes="192x192" />
+
+  <!-- Android -->
+  <link rel="shortcut icon" href="/assets/Images/favicons/favicon_196.png" sizes="196x196" />
+
+  <!-- iOS -->
+  <link
+    rel="apple-touch-icon"
+    href="/assets/Images/favicons/favicon_152.png"
+    sizes="152x152"
+  />
+  <link
+    rel="apple-touch-icon"
+    href="/assets/Images/favicons/favicon_167.png"
+    sizes="167x167"
+  />
+  <link
+    rel="apple-touch-icon"
+    href="/assets/Images/favicons/favicon_180.png"
+    sizes="180x180"
+  />
+
+  <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Volumetric Lighting | Cédric Van Huffelen</title>
+<meta name="generator" content="Jekyll v4.0.1" />
+<meta property="og:title" content="Volumetric Lighting" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Volumetric light effects are caused by light being scattered in a humid or dusty environment. It’s a beautiful looking natural phenomenon also known as ‘god rays’. To challenge myself, I tried implementing this effect in real-time in the Unity game engine based on the same technique used in Killzone: Shadow Fall from Guerrilla Games." />
+<meta property="og:description" content="Volumetric light effects are caused by light being scattered in a humid or dusty environment. It’s a beautiful looking natural phenomenon also known as ‘god rays’. To challenge myself, I tried implementing this effect in real-time in the Unity game engine based on the same technique used in Killzone: Shadow Fall from Guerrilla Games." />
+<link rel="canonical" href="http://localhost:4000/portfolio/volumetricLights.html" />
+<meta property="og:url" content="http://localhost:4000/portfolio/volumetricLights.html" />
+<meta property="og:site_name" content="Cédric Van Huffelen" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-09-05T00:13:15+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Volumetric Lighting" />
+<meta name="twitter:site" content="@" />
+<script type="application/ld+json">
+{"dateModified":"2021-09-05T00:13:15+02:00","datePublished":"2021-09-05T00:13:15+02:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/portfolio/volumetricLights.html"},"url":"http://localhost:4000/portfolio/volumetricLights.html","description":"Volumetric light effects are caused by light being scattered in a humid or dusty environment. It’s a beautiful looking natural phenomenon also known as ‘god rays’. To challenge myself, I tried implementing this effect in real-time in the Unity game engine based on the same technique used in Killzone: Shadow Fall from Guerrilla Games.","headline":"Volumetric Lighting","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <!-- for mathjax support -->
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+    });
+  </script>
+  <script
+    type="text/javascript"
+    async
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+  ></script>
+  
+</head>
+
+
+  <body>
+    <!-- Navigation -->
+<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light fixed-top">
+  <div class="container">
+    <a href="/index.html">
+    <img src="/assets/Images/favicons/favicon_128.png" alt="">
+    </a>
+      <a class="navbar-brand" href="/index.html">Cédric Van Huffelen</a>
+          <span class="navbar-text">
+            Technical Artist | Unity Developer
+          </span>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+              data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+              aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto list-unstyled">
+            
+              <li
+              
+              class="nav-item">
+              
+                <a class="nav-link" href="/tutorials.html">Tutorials</a>
+              </li>
+            
+              <li
+              
+              class="nav-item">
+              
+                <a class="nav-link" href="/portfolio.html">Portfolio</a>
+              </li>
+            
+              <li
+              
+              class="nav-item">
+              
+                <a class="nav-link" href="/professionalWork.html">Professional Work</a>
+              </li>
+            
+              <li
+              
+              class="nav-item">
+              
+                <a class="nav-link" href="/resume.html">Resume</a>
+              </li>
+            
+              <li
+              
+              class="nav-item">
+              
+                <a class="nav-link" href="/about.html">About</a>
+              </li>
+            
+          </ul>
+      </div>
+  </div>
+</nav>
+
+    <!-- Page Content -->
+    <div class="container">
+      <p></p>
+
+      <!-- Page Heading/Breadcrumbs -->
+      <h1>
+        Volumetric Lighting
+        <small class="blockquote text-center"></small>
+      </h1>
+
+      <p>Volumetric light effects are caused by light being scattered in a humid or dusty environment. It’s a beautiful looking natural phenomenon also known as ‘god rays’.
+To challenge myself, I tried implementing this effect in real-time in the Unity game engine based on the same technique used in Killzone: Shadow Fall from Guerrilla Games.</p>
+
+<h5 id="technique-overview">Technique overview</h5>
+
+<ul>
+  <li>For each light, create a custom render target (half or quarter resolution for better performance).</li>
+  <li>Render a shape that represents the light’s volume. For point lights we render a sphere and for spot lights a cone. Directional lights are rendered with a fullscreen quad as the volume covers the entire scene.</li>
+  <li>At every pixel, calculate a line segment of the view ray that intersects with the light’s volume.</li>
+  <li>Raymarch along this line segment and sample multiple light contributions.
+    <ul>
+      <li>A dither effect is used to offset the ray origin.</li>
+    </ul>
+  </li>
+  <li>In the post processing stage, we add the volumetric light render target to the light buffer.</li>
+</ul>
+
+<div class="row">
+        <div class="col-lg-6">
+            <div style="position:relative; padding-bottom:calc(56.25%); margin-bottom:1.5rem;rounded mb-4">
+                <iframe src="https://gfycat.com/ifr/SlushyBreakableDunlin" frameborder="0" scrolling="yes" width="100%" height="100%" style="position:absolute;top:0;left:0;" allowfullscreen=""></iframe>
+            </div>
+        </div>
+        <div class="col-lg-6">
+        </div>
+        <div class="col-lg-6">
+            <img class="img-fluid rounded mb-4" src="/assets/Images/VolumetricLights/VolumetricLight1900x1080.webp" alt="" />
+        </div>
+        <div class="col-lg-6">
+            <img class="img-fluid rounded mb-4" src="/assets/Images/VolumetricLights/VolumetricLight1900x1080_2.webp" alt="" />
+        </div>
+        <div class="col-lg-6">
+            <img class="img-fluid rounded mb-4" src="/assets/Images/VolumetricLights/VolumetricLight1900x1080_3.webp" alt="" />
+        </div>
+        <div class="col-lg-6">
+            <img class="img-fluid rounded mb-4" src="/assets/Images/VolumetricLights/VolumetricLight1900x1080_4.webp" alt="" />
+        </div>
+    </div>
+
+<h3 id="references">References</h3>
+<p><a href="https://www.amazon.com/GPU-Pro-Advanced-Rendering-Techniques/dp/1482208636" target="_blank">GPU Pro 5</a> - Volumetric Light Effects in Killzone: Shadow Fall by Nathas Vos</p>
+
+    </div>
+    <!-- /.container -->
+
+    <!-- Footer -->
+<footer class="bg-light page-footer font-small pt-4">
+  <!-- Footer Elements -->
+  <div class="footer-links">
+    <!-- Social buttons -->
+    <ul class="list-unstyled list-inline text-center">
+      <li class="list-inline-item ">
+        <a href="https://github.com/Shaderic" target="_blank">
+          <img src="/assets/icons/iconmonstr-github-1.svg" alt="" width="32" height="32" />
+        </a>
+      </li>
+      <li class="list-inline-item">
+        <a href="https://twitter.com/Shaderic_" target="_blank">
+          <img src="/assets/icons/iconmonstr-twitter-1.svg" alt="" width="32" height="32" />
+        </a>
+      </li>
+      <li class="list-inline-item">
+        <a href="https://www.linkedin.com/in/cédric-van-huffelen" target="_blank">
+          <img src="/assets/icons/iconmonstr-linkedin-3.svg" alt="" width="32" height="32" />
+        </a>
+      </li>
+    </ul>
+    <!-- Social buttons -->
+  </div>
+  <!-- Footer Elements -->
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">
+    Copyright &copy; Cédric Van Huffelen 2021
+  </div>
+  <!-- Copyright -->
+</footer>
+<!-- Footer -->
+
+<script
+  src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+  integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+  crossorigin="anonymous"
+></script>
+<script
+  src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+  integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+  crossorigin="anonymous"
+></script>
+
+  </body>
+</html>

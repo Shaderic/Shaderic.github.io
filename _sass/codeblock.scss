@@ -1,0 +1,42 @@
+.codeBlock {
+  border-radius: 5px;
+  border: 1px solid #d1d5da;
+}
+
+.codeBlock-header {
+  background-color: #f6f8fa;
+  border-radius: 5px;
+  border: 1px solid #d1d5da;
+  height: 25px;
+  margin-bottom: -13px;
+  text-align: center;
+  padding-top: 3px;
+  font-size: 13px;
+}
+
+figure.highlight {
+  border-left: 0.05em solid #d1d5da;
+  border-right: 0.05em solid #d1d5da;
+  border-top: 0.05em solid #d1d5da;
+  border-bottom: 0.05em solid #d1d5da;
+  padding: 0 1em;
+  padding-top: 0.5em;
+  border-radius: 2px;
+}
+
+blockquote {
+  border-left: 0.25em solid $primary;
+  color: #6a737d;
+  padding: 0 1em;
+  border-radius: 4px;
+  background-color: #f8f9fa;
+}
+
+body .gist .gist-meta {
+  display: none;
+}
+
+body .gist .blob-num {
+  pointer-events: none;
+}
+

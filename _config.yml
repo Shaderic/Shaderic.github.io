@@ -1,1 +1,32 @@
-theme: jekyll-theme-minimal
+# general settings
+title: Cédric Van Huffelen
+email: cedricvanhuffelen@gmail.com
+linkedIn: cédric-van-huffelen
+github: Shaderic
+twitter: Shaderic_
+description: "Technical Artist | Unity Developer"
+baseurl: ""
+url: ""
+
+collections:
+  portfolio:
+    output: true
+  professionalWork:
+    output: true
+  tutorials:
+    output: true
+
+sass:
+  sass_dir: _sass
+  style: compressed
+
+
+#build settings
+markdown: kramdown
+highlighter: rouge
+usemathjax: true
+paginate: 5
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap

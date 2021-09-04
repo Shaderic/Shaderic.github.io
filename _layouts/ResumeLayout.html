@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% include head.html %}
+
+  <body>
+    {% include navbar.html %}
+
+    <!-- Page Content -->
+    <div class="container">
+      <!-- Page Heading/Breadcrumbs -->
+    <h1 class="my-4"></h1>
+
+      <!-- work experience -->
+      <div class="row">
+        <div class="col-lg-8">
+          <h1>{{page.title}}</h1>
+          <p></p>
+
+                <h4 class="smallUnderlineHeader">Work Experience</h4>
+                <ul class="timeline">
+                  {% for block in site.data.resume.workExperience %}
+                  <li class="li-timeline">
+                    <div><span class="highlight-item"> {{ block.role }} </span> - <i> {{ block.company }},  {{ block.place }}</i>
+                    </div>
+                    <div class="underTitle">{{ block.date }}</div>
+                        <div >{{ block.description }}</div>                          
+                  </li>
+                  {% endfor %}  
+                </ul>
+
+          <!-- Education-->
+          <h5 class="smallUnderlineHeader">Education</h5>
+          <ul class="timeline">
+              {% for block in site.data.resume.education %}
+              <li class="li-timeline">
+                <span class="highlight-item">{{ block.course }}</span> - <i>{{ block.school }}, {{ block.place }}</i>
+                  <div class="underTitle">{{ block.date }} - {{ block.extraInfo }}</div>
+                </li>
+              {% endfor %}   
+            </ul>             
+        </div>
+        
+        <div class="col-lg-4">
+          <h1 class="my-5"></h1>
+            <!-- Personal Details-->
+            <h5 class="smallUnderlineHeader">Personal Information</h5>
+            <div > {{site.title}} </div>
+            <div> Date of Birth: 29 june 1997 </div>
+            <div> Nationality: Belgian </div>
+            <div> <a class="post-link" href="mailto:{{site.email}}" >Email</a></div>
+            <div> <a class="post-link" href="https://www.linkedin.com/in/{{site.linkedIn}} " target="_blank">LinkedIn</a></div>
+            <div> <a class="post-link" href="https://github.com/{{site.github}}" target="_blank">Github</a></div>
+
+            <!-- Skills -->
+            <p>
+              <h5 class="smallUnderlineHeader">Skills</h5>
+                {% for block in site.data.resume.skills %}
+                <div> {{block.skill}} </div>
+              {% endfor %}               
+            </p>
+
+            <!-- Software -->
+            <p>
+              <h5 class="smallUnderlineHeader">Software</h5>
+                {% for block in site.data.resume.softwares %}
+                <div> {{block.software}} </div>
+              {% endfor %}               
+            </p>
+
+            <!-- Languages -->
+            <p>
+              <h5 class="smallUnderlineHeader">Languages</h5>
+              {% for block in site.data.resume.languages %}
+                <div> {{block.language}} - {{block.skill}} </div>
+              {% endfor %}
+            </p>
+            
+
+            
+          </div>
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container -->
+
+    {% include footer.html %}
+  </body>
+</html>

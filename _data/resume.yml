@@ -1,0 +1,71 @@
+skills:
+  - skill: C#
+  - skill: Python
+  - skill: ShaderLab - CG/HLSL
+  - skill: OpenGL - GLSL
+  - skill: R
+  - skill: Git
+  - skill: C++
+  - skill: HTML - CSS
+
+softwares:
+  - software: Unity
+  - software: Blender
+  - software: Visual Studio
+  - software: Jetbrains Rider
+  - software: Plastic SCM
+  - software: Adobe Photoshop & Illustrator
+  - software: Autodesk 3DS Max
+
+languages:
+  - language: Dutch
+    skill: Native
+  - language: English
+    skill: Fluent
+  - language: German
+    skill: Beginner
+
+education:
+  - course: Bachelor Digital Arts and Entertainment
+    school: Howest
+    place: Kortrijk
+    date: 09/2015 - 06/2018
+    extraInfo: major Independent Game Production
+  - course: Industrial ICT
+    school: SLM
+    place: Antwerp
+    date: 09/2013 - 06/2015
+    extraInfo:
+
+workExperience:
+  - role: Technical Artist
+    company: Salty Lemon Entertainment
+    place: Kortrijk
+    date: 07/2021 - present
+    description: Maintain custom shaders that target multiple platforms ranging from high-end computers to low-end mobile devices.<br>Help to guide the content production pipeline by developing internal toolsets and workflows to ensure that art meets both the visual quality and performance targets.
+
+  - role: Researcher/Developer
+    company: HITLab Howest
+    place: Kortrijk
+    date: 01/2021 - present
+    description: Research and develop virtual solutions for bio-metric research. <br>Analyse data in R and create reports to evaluate results.
+
+  - role: Unity Developer
+    company: Triangle Factory
+    place: Ghent
+    date: 02/2020 - 01/2021
+    description: Create training simulations for VR platforms.
+
+  - role: Technical Artist/Gameplay Programmer
+    company: Bazookas
+    place: Bruges
+    date: 02/2019 - 11/2019
+    description: Maintain a framework of custom tools and shaders. <br>Prototype and develop games for WebGL - Android and IOS devices.
+      
+  - role: Internship Technical Artist
+    company: Salty Lemon Entertainment
+    place: Kortrijk
+    date: 10/2017 - 06/2018
+    description: Develop a custom deferred rendering pipeline. Audit assets including asset optimization and write documentation for artists and designers.
+
+

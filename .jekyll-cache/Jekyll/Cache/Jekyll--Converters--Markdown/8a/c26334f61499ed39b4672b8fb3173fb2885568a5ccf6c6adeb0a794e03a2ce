@@ -1,0 +1,7 @@
+I"<p>While playing around with depth cameras, I wanted to see if it was possible to create buttons with no physical shape.<br />
+After doing some research we arrived at a working prototype using a projection beamer and the Microsoft Azure kinect.<br />
+During the calibration phase we calculate the bounding box for each button and sampling the initial depth values.<br />
+By comparing the current depth values with the initial ones, we can keep track of the hands and save them to a black and white texture. <br />
+For each button we calculate a % of how many pixels are filled in the bounding box.<br />
+By applying a threshold on this value we can determine whether a player sufficiently covers the virtual button and is at the correct height to “press the button”.</p>
+:ET

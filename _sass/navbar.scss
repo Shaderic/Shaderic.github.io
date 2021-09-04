@@ -1,0 +1,38 @@
+.navbar img {
+  padding-top: 0.3125rem;
+  margin-right: 0.7rem;
+  width: 56px;
+}
+
+.navbar > .container,
+.navbar > .container-fluid {
+  display: flex;
+  white-space: nowrap;
+}
+
+.navbar-light {
+  background: #fff;
+  padding-left: 26px;
+  padding-right: 26px;
+  box-shadow: 0 5px 30px -10px rgba(0, 0, 0, 0.15);
+}
+
+.bg-light {
+  background-color: #ffffff !important;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: #151c22 !important;
+  font-size: 1.1em;
+  font-weight: 600;
+}
+
+.navbar-light .navbar-nav .nav-item.active .nav-link,
+.navbar-light .navbar-nav .nav-link:hover {
+  color: $primary !important;
+}
+
+.navbar-brand {
+  color: #151c22 !important;
+  font-weight: 600;
+}

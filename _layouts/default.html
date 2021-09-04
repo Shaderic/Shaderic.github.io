@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% include head.html %}
+
+  <body>
+    {% include navbar.html %}
+
+    <!-- Page Content -->
+    <div class="container">
+      <h1 class="my-4"></h1>
+      <!-- Page Heading/Breadcrumbs -->
+      <h1>{{page.title}}</h1>
+      <p></p>
+
+      {{ content }}
+    </div>
+    <!-- /.container -->
+    {% include footer.html %}
+  </body>
+</html>

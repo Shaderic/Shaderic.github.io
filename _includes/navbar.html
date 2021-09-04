@@ -1,0 +1,31 @@
+<!-- Navigation -->
+<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light fixed-top">
+  <div class="container">
+    <a href="/index.html">
+    <img src="/assets/Images/favicons/favicon_128.png" alt="">
+    </a>
+      <a class="navbar-brand" href="/index.html">{{site.title}}</a>
+          <span class="navbar-text">
+            {{site.description}}
+          </span>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+              data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+              aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto list-unstyled">
+            {% for item in site.data.nav %}
+              <li
+              {% if item.url == page.url %}
+                class = "nav-item active">
+                {% else  %}
+              class="nav-item">
+              {% endif %}
+                <a class="nav-link" href="{{item.url}}">{{item.name}}</a>
+              </li>
+            {% endfor %}
+          </ul>
+      </div>
+  </div>
+</nav>

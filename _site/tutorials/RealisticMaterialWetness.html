@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Realistic Material Wetness | Cédric Van Huffelen</title>
+<meta name="generator" content="Jekyll v4.0.1" />
+<meta property="og:title" content="Realistic Material Wetness" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Technical Artist Unity Developer" />
+<meta property="og:description" content="Technical Artist Unity Developer" />
+<link rel="canonical" href="http://localhost:4000/tutorials/RealisticMaterialWetness.html" />
+<meta property="og:url" content="http://localhost:4000/tutorials/RealisticMaterialWetness.html" />
+<meta property="og:site_name" content="Cédric Van Huffelen" />
+<meta property="og:image" content="http://localhost:4000/assets/Images/Tutorials/RealisticMaterialWetness/RealisticMaterialWetness700x300.webp" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-09-05T00:13:15+02:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="http://localhost:4000/assets/Images/Tutorials/RealisticMaterialWetness/RealisticMaterialWetness700x300.webp" />
+<meta property="twitter:title" content="Realistic Material Wetness" />
+<meta name="twitter:site" content="@" />
+<script type="application/ld+json">
+{"dateModified":"2021-09-05T00:13:15+02:00","datePublished":"2021-09-05T00:13:15+02:00","@type":"BlogPosting","image":"http://localhost:4000/assets/Images/Tutorials/RealisticMaterialWetness/RealisticMaterialWetness700x300.webp","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/tutorials/RealisticMaterialWetness.html"},"url":"http://localhost:4000/tutorials/RealisticMaterialWetness.html","description":"Technical Artist Unity Developer","headline":"Realistic Material Wetness","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <head>
+  <title>Realistic Material Wetness</title>
+  <link rel="stylesheet" href="/assets/css/styles.css" />
+  <!-- generics -->
+  <link rel="icon" href="/assets/Images/favicons/favicon_32.png" sizes="32x32" />
+  <link rel="icon" href="/assets/Images/favicons/favicon_128.png" sizes="128x128" />
+  <link rel="icon" href="/assets/Images/favicons/favicon_192.png" sizes="192x192" />
+
+  <!-- Android -->
+  <link rel="shortcut icon" href="/assets/Images/favicons/favicon_196.png" sizes="196x196" />
+
+  <!-- iOS -->
+  <link
+    rel="apple-touch-icon"
+    href="/assets/Images/favicons/favicon_152.png"
+    sizes="152x152"
+  />
+  <link
+    rel="apple-touch-icon"
+    href="/assets/Images/favicons/favicon_167.png"
+    sizes="167x167"
+  />
+  <link
+    rel="apple-touch-icon"
+    href="/assets/Images/favicons/favicon_180.png"
+    sizes="180x180"
+  />
+
+  <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Realistic Material Wetness | Cédric Van Huffelen</title>
+<meta name="generator" content="Jekyll v4.0.1" />
+<meta property="og:title" content="Realistic Material Wetness" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Technical Artist Unity Developer" />
+<meta property="og:description" content="Technical Artist Unity Developer" />
+<link rel="canonical" href="http://localhost:4000/tutorials/RealisticMaterialWetness.html" />
+<meta property="og:url" content="http://localhost:4000/tutorials/RealisticMaterialWetness.html" />
+<meta property="og:site_name" content="Cédric Van Huffelen" />
+<meta property="og:image" content="http://localhost:4000/assets/Images/Tutorials/RealisticMaterialWetness/RealisticMaterialWetness700x300.webp" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-09-05T00:13:15+02:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="http://localhost:4000/assets/Images/Tutorials/RealisticMaterialWetness/RealisticMaterialWetness700x300.webp" />
+<meta property="twitter:title" content="Realistic Material Wetness" />
+<meta name="twitter:site" content="@" />
+<script type="application/ld+json">
+{"dateModified":"2021-09-05T00:13:15+02:00","datePublished":"2021-09-05T00:13:15+02:00","@type":"BlogPosting","image":"http://localhost:4000/assets/Images/Tutorials/RealisticMaterialWetness/RealisticMaterialWetness700x300.webp","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/tutorials/RealisticMaterialWetness.html"},"url":"http://localhost:4000/tutorials/RealisticMaterialWetness.html","description":"Technical Artist Unity Developer","headline":"Realistic Material Wetness","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <!-- for mathjax support -->
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+    });
+  </script>
+  <script
+    type="text/javascript"
+    async
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+  ></script>
+  
+</head>
+
+
+  <body>
+    <!-- Navigation -->
+<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light fixed-top">
+  <div class="container">
+    <a href="/index.html">
+    <img src="/assets/Images/favicons/favicon_128.png" alt="">
+    </a>
+      <a class="navbar-brand" href="/index.html">Cédric Van Huffelen</a>
+          <span class="navbar-text">
+            Technical Artist | Unity Developer
+          </span>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+              data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+              aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto list-unstyled">
+            
+              <li
+              
+              class="nav-item">
+              
+                <a class="nav-link" href="/tutorials.html">Tutorials</a>
+              </li>
+            
+              <li
+              
+              class="nav-item">
+              
+                <a class="nav-link" href="/portfolio.html">Portfolio</a>
+              </li>
+            
+              <li
+              
+              class="nav-item">
+              
+                <a class="nav-link" href="/professionalWork.html">Professional Work</a>
+              </li>
+            
+              <li
+              
+              class="nav-item">
+              
+                <a class="nav-link" href="/resume.html">Resume</a>
+              </li>
+            
+              <li
+              
+              class="nav-item">
+              
+                <a class="nav-link" href="/about.html">About</a>
+              </li>
+            
+          </ul>
+      </div>
+  </div>
+</nav>
+
+    <!-- Page Content -->
+    <div class="container">
+      <h1 class="my-4"></h1>
+
+      <!-- Page Heading/Breadcrumbs -->
+      <h1>
+        Realistic Material Wetness
+        <small class="blockquote text-center"></small>
+      </h1>
+
+      <p><br /></p>
+
+<div class="row">
+    <!-- <div class="col-lg-6">
+       <img class="img-fluid rounded mb-4" src="http://placehold.it/750x450" alt="">
+    </div>-->
+    <div class="col-lg-6">
+      <h1></h1>
+      Since physically based rendering (PBR) is now a standard in most games we try to simulate better and more lighting models that cover more material types. With the classic lighting model, everybody chose to darken the diffuse term and boost the specular term. With the method explained below you can provide a way to simulate wet surfaces while keeping your material physically accurate.<br />
+<br />
+We can easily distinguish between a dry and wet surface. The best visual cue is that wet surfaces look darker, have a higher specular value, and exhibit subtle changes in saturation.<br />
+This behavior is made by rough/porous materials (brick, clay, concrete, plaster...), Absorbent materials (cotton, fabric), and organic materials like hair.
+Materials that are smooth don't change however since they are already reflecting a lot of light.
+    </div>
+    <div class="col-lg-6">
+<h1 class="my-4"></h1>
+        <img class="img-fluid rounded mb-4" src="/assets/Images/Tutorials/RealisticMaterialWetness/RealisticMaterialWetness700x300.webp" alt="" />
+     </div>
+  </div>
+
+<p><br /></p>
+
+<hr />
+
+<h3 id="darkening-the-albedo">Darkening the albedo</h3>
+
+<p>When looking at all the visual cues of wet materials, we can see that the surface looks darker. This depends on how porous the material is and how much light is absorbed. Another thing we can see is that brighter diffuse values stay bright but everything else darkens.
+At first, it seems reasonable to multiply to diffuse factor with a scalar value depending on the wetness. The problem with this method is that bright diffuse colors lose more color than supposed to and the materials appear rather black instead of darker.</p>
+
+<p>A better way to darken the diffuse is to square it. This makes the brighter AND the darker colors lose less value while others at around 50% will be adjusted more accurately. Below you can see a graph that shows the difference between a squared diffuse and a diffuse multiplied with a low value (0.35 here).</p>
+
+<div class="row">
+    <!-- <div class="col-lg-6">
+       <img class="img-fluid rounded mb-4" src="http://placehold.it/750x450" alt="">
+    </div>-->
+    <div class="col-lg-5">
+    <img class="img-fluid rounded mb-4" src="/assets/Images/Tutorials/RealisticMaterialWetness/darkerDiffuseGraph.png" alt="" />
+    </div>
+    <div class="col-lg-6">
+        <img class="img-fluid rounded mb-4" src="/assets/Images/Tutorials/RealisticMaterialWetness/DarkeningAlbedo700x300.png" alt="" />
+        <footer class="blockquote-footer">The difference between the normal diffuse (left), the diffuse multiplied with a low value (middle), and the squared diffuse (right)</footer>
+     </div>
+  </div>
+
+<hr />
+
+<h3 id="input-properties">Input properties</h3>
+<p>To keep the input intuitive for artists, we use as few material properties as possible.
+To control the wetness on the material itself we use a single greyscale texture that the artists can paint to keep visual consistency, physical correctness and still keep things intuitive.</p>
+
+<p>We also use a single wetness float to scale the mask so we can dynamically change it via gameplay.
+Below you can find a visualization of multiple wetness masks.</p>
+
+<p><br /></p>
+
+<p><img class="img-fluid rounded mb-4" src="/assets/Images/Tutorials/RealisticMaterialWetness/WetnessTexture700x300.png" alt="" /></p>
+
+<p><br /></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Wetness</td>
+      <td>Float</td>
+      <td>This drives the transition between the different phases and also acts as a scalar value of the wetness mask</td>
+    </tr>
+    <tr>
+      <td>Wetness Mask</td>
+      <td>Greyscale Texture</td>
+      <td>This controls the material wetness</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<div class="alert alert-info" role="alert">
+  Since we want porous materials to darken when they're wet, we could give this as a second property to the artist. However, since the porosity is based on the materials roughness value we can use the roughness map as input for this.
+</div>
+
+<div class="alert alert-info" role="alert">
+  An easy way to create a wetness map is to start with an inverted height map and apply some contrast to it!
+</div>
+
+<p><br /></p>
+
+<hr />
+
+<h3 id="the-shader-code">The Shader code</h3>
+<p>Here’s the shader code. The artists have control of the <strong>wetness</strong> parameter whereas the <strong>porosity</strong> parameter is the material’s roughness value. Wetness drives the transition and the porosity darkens the base color. To darken the material we lerp to a squared version of the base color. This is a reasonable approximation of the darkening and more accurate if we would multiply the base color with a low grayscale value.</p>
+
+<p>We also force the vertex normal to point straight up of the wetness value gets above 98%. This convinces the player that the surface of the pool is flat like water.</p>
+
+<script src="https://gist.github.com/Shaderic/0bbecff9e134537c051775a8d29dadfd.js"></script>
+
+<script src="https://gist.github.com/Shaderic/1ede66fb72c66a4a7c28cefc8d9b882e.js"></script>
+
+<p><br /></p>
+
+<hr />
+
+<h3 id="references">References</h3>
+<p><a href="https://advances.realtimerendering.com/other/2016/naughty_dog/NaughtyDog_TechArt_Final.pdf" target="_blank">The Technical Art of Uncharted 4</a><br />
+<a href="https://seblagarde.wordpress.com/2013/03/19/water-drop-3a-physically-based-wet-surfaces/" target="_blank">Physically based wet surfaces</a></p>
+
+<p>Texture Assets from:<br />
+<a href="https://www.textures.com/" target="_blank">Textures.com</a><br />
+<a href="https://texturehaven.com/" target="_blank">TextureHaven</a></p>
+
+
+
+      <p>
+        Get the source files for this tutorial on
+        <a href="https://github.com/Shaderic/Realistic-Material-Wetness" target="_blank"
+          >Github</a
+        >
+      </p>
+    </div>
+    <!-- /.container -->
+
+    <!-- Footer -->
+<footer class="bg-light page-footer font-small pt-4">
+  <!-- Footer Elements -->
+  <div class="footer-links">
+    <!-- Social buttons -->
+    <ul class="list-unstyled list-inline text-center">
+      <li class="list-inline-item ">
+        <a href="https://github.com/Shaderic" target="_blank">
+          <img src="/assets/icons/iconmonstr-github-1.svg" alt="" width="32" height="32" />
+        </a>
+      </li>
+      <li class="list-inline-item">
+        <a href="https://twitter.com/Shaderic_" target="_blank">
+          <img src="/assets/icons/iconmonstr-twitter-1.svg" alt="" width="32" height="32" />
+        </a>
+      </li>
+      <li class="list-inline-item">
+        <a href="https://www.linkedin.com/in/cédric-van-huffelen" target="_blank">
+          <img src="/assets/icons/iconmonstr-linkedin-3.svg" alt="" width="32" height="32" />
+        </a>
+      </li>
+    </ul>
+    <!-- Social buttons -->
+  </div>
+  <!-- Footer Elements -->
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">
+    Copyright &copy; Cédric Van Huffelen 2021
+  </div>
+  <!-- Copyright -->
+</footer>
+<!-- Footer -->
+
+<script
+  src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+  integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+  crossorigin="anonymous"
+></script>
+<script
+  src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+  integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+  crossorigin="anonymous"
+></script>
+
+  </body>
+</html>

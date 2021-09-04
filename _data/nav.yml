@@ -1,0 +1,14 @@
+- name: Tutorials
+  url: /tutorials.html
+
+- name: Portfolio
+  url: /portfolio.html
+
+- name: Professional Work
+  url: /professionalWork.html
+
+- name: Resume
+  url: /resume.html
+
+- name: About
+  url: /about.html
