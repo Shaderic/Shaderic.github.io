@@ -6,6 +6,8 @@ weight: 100
 usemathjax: true
 showInFrontPage: true
 image: /assets/Images/Tutorials/RealisticMaterialWetness/RealisticMaterialWetness700x300.webp
+height: 700
+width: 300
 pageintro: ""
 github: Shaderic/Realistic-Material-Wetness
 ---
