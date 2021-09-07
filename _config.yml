@@ -6,7 +6,7 @@ github: Shaderic
 twitter: Shaderic_
 description: "Technical Artist | Unity Developer"
 baseurl: ""
-url: ""
+url: "https://www.shaderic.com"
 
 collections:
   portfolio:
