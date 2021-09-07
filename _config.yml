@@ -3,10 +3,12 @@ title: Cédric Van Huffelen
 email: cedricvanhuffelen@gmail.com
 linkedIn: cédric-van-huffelen
 github: Shaderic
-twitter: Shaderic_
 description: "Technical Artist | Unity Developer"
-baseurl: ""
 url: "https://www.shaderic.com"
+
+twitter:
+  username: Shaderic_
+  card: summary_large_image
 
 collections:
   portfolio:
@@ -30,6 +32,3 @@ paginate: 5
 plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
-
-twitter:
-  card: summary_large_image
