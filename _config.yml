@@ -31,3 +31,5 @@ plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
 
+twitter:
+  card: summary_large_image
