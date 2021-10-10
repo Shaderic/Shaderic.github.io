@@ -1,7 +1,7 @@
 ---
 layout: tutorial
 title: Heightmap Blending
-description: This tutorial is about blending textures in an accurate way based on their heightmap.
+description:
 weight: 100
 usemathjax: true
 showInFrontPage: true
