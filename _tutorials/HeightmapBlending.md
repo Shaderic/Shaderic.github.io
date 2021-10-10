@@ -2,7 +2,7 @@
 layout: tutorial
 title: Heightmap Blending
 description:
-weight: 100
+weight: 200
 usemathjax: true
 showInFrontPage: true
 image: "/assets/Images/Tutorials/HeightmapBlending/HeightmapBlending.png"
@@ -59,13 +59,13 @@ The linear blending from left to right is also gone so we need to get that back 
 
 ### Advanced Height based blending
 
-Let's first remove the if statement. If we look at both of the height values, and we know that they are normalized, subtracting them will gives us a hint which texture has a higher value. If the result is > 0 then texture A should be shown, if the result is lower than 0 then texture B should be shown.
+Let's first remove the if statement. If we look at both of the height values, and we know that they are normalized, subtracting them will gives us a hint which texture has a higher value. If the result is `> 0` then `texture A` should be shown, if the result is lower than `0` then `texture B` should be shown.
 By using the step function we can set the result to 1 if it is higher than 0 otherwise we get a 0.
 
 Now let's reimplement the smooth blending.
 Whenever you need a smooth value in a shader the smoothstep function comes in mind. This is the same as the previous step function only giving a smooth value between the upper and lower limit.
-In the previous step function we used `0` as lower limit but let's change that into a variable, this way we can control the blending more freely.
-But what should we use as the upper limit? Let's add a low value to the lower limit and use that result as the upper limit. That low value should be a variable as well so you can control the smoothing itself.
+In the previous step function we used `0` as `lower limit` but let's change that into a variable, this way we can control the blending more freely.
+But what should we use as the `upper limit`? Let's add a low value to the lower limit and use that result as the upper limit. That low value should be a variable as well so you can control the smoothing itself.
 
 The final step is that the blending from left to right should be back as well. We know that the final result of the subtraction resulted in a value between 0-1, we could multiply that by a mask or other value. In this case I use the red channel of the vertex color. 
 
