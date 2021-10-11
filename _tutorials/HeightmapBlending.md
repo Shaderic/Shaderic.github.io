@@ -12,12 +12,34 @@ pageintro: "This tutorial is about blending textures in an accurate way based on
 github: Shaderic/Heightmap-Blending
 ---
 
-One of the most useful features in a shader can be texture blending.  
-The most common example of this is terrain shaders. Those are generally controlled by [splatmaps](http://wiki.polycount.com/wiki/Splat){:target="_blank"},  
-where each channel tells where a certain texture should be visible. Another way of controlling the visibility of textures is by using the vertex colors.   
-This is very cheap, but result in a lower quality blending if the mesh or terrain has a limited amount of vertices.
+<br/>
 
+  <div class="row">
+    <!-- <div class="col-lg-6">
+       <img class="img-fluid rounded mb-4" src="http://placehold.it/750x450" alt="">
+    </div>-->
+    <div class="col-lg-6">
+      <h1></h1>
+      One of the most useful features in a shader can be texture blending.  
+The most common example of this is terrain shaders. Those are generally controlled by <a target="_blank" href="http://wiki.polycount.com/wiki/Splat">splatmaps</a>,  <br>
+where each channel tells where a certain texture should be visible. 
+<br>  
+<br>  
+Another way of controlling the visibility of textures is by using the vertex colors.<br>  
+This is very cheap, but result in a lower quality blending if the mesh or terrain has a limited amount of vertices.
+ <br>
+ <br>  
 In the sections below you will learn other types of blending to achieve a high quality of blending with a generally cheap performance cost.
+    </div>
+    <div class="col-lg-6">
+<h1 class="my-4"></h1>
+        <img class="img-fluid rounded mb-4" src="/assets/Images/Tutorials/HeightmapBlending/HeightmapBlendingExample.png" alt="">
+     </div>
+  </div>
+  
+<br/>
+  
+---
 
 
 ### Default Blending
