@@ -5,17 +5,14 @@ skills:
   - skill: OpenGL - GLSL
   - skill: R
   - skill: Git
-  - skill: C++
-  - skill: HTML - CSS
 
 softwares:
   - software: Unity
   - software: Blender
-  - software: Visual Studio
-  - software: Jetbrains Rider
   - software: Plastic SCM
   - software: Adobe Photoshop & Illustrator
   - software: Autodesk 3DS Max
+  - software: Autodesk Maya
 
 languages:
   - language: Dutch
@@ -38,16 +35,16 @@ education:
     extraInfo:
 
 workExperience:
-  - role: Technical Artist
+  - role: Lead Technical Artist
     company: Salty Lemon Entertainment
-    place: Kortrijk
+    place: Antwerp
     date: 07/2021 - present
     description: Maintain custom shaders that target multiple platforms ranging from high-end computers to low-end mobile devices.<br>Help to guide the content production pipeline by developing internal toolsets and workflows to ensure that art meets both the visual quality and performance targets.
 
   - role: Researcher/Developer
     company: HITLab Howest
     place: Kortrijk
-    date: 01/2021 - present
+    date: 01/2021 - 12/2021
     description: Research and develop virtual solutions for bio-metric research. <br>Analyse data in R and create reports to evaluate results.
 
   - role: Unity Developer
@@ -61,11 +58,5 @@ workExperience:
     place: Bruges
     date: 02/2019 - 11/2019
     description: Maintain a framework of custom tools and shaders. <br>Prototype and develop games for WebGL - Android and IOS devices.
-      
-  - role: Internship Technical Artist
-    company: Salty Lemon Entertainment
-    place: Kortrijk
-    date: 10/2017 - 06/2018
-    description: Develop a custom deferred rendering pipeline. Audit assets including asset optimization and write documentation for artists and designers.
 
 

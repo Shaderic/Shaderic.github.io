@@ -1,6 +1,6 @@
 ---
 layout: tutorials
-title: Tutorials
+title: Blog
 usemathjax: true
 ---
 
