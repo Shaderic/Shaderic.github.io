@@ -1,4 +1,0 @@
----
-layout: ResumeLayout
-title: Resume
----
